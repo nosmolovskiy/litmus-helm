@@ -1,0 +1,18 @@
+{{- if .Values.portal.frontend.virtualService.enabled -}}
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: litmusportal-frontend-virtual-service
+spec:
+  hosts:
+{{ toYaml .Values.portal.frontend.virtualService.hosts | indent 4 }}
+  gateways:
+{{ toYaml .Values.portal.frontend.virtualService.gateways | indent 4 }}
+  http:
+    - route:
+      - destination:
+          host: {{ .Values.portal.frontend.virtualService.dstHost }}
+          port:
+            number: {{ .Values.portal.frontend.virtualService.dstPort }}
+{{- end  }}

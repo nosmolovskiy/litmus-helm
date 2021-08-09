@@ -57,6 +57,14 @@ portal:
     containerPort: 8080
     customLabels: {}
     # my.company.com/tier: "frontend"
+    tolerations: []
+    affinity: {}
+    virtualService:
+      enabled: false
+      hosts: []
+      gateways: []
+      dstHost: litmus-portal
+      dstPort: 9091
 
     resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -171,6 +179,9 @@ portal:
       authServer:
         port: 9003
         targetPort: 3000
+  tolerations: []
+  affinity: {}
+
 mongo:
   replicas: 1
   customLabels: {}
@@ -212,6 +223,8 @@ mongo:
     targetPort: 27017
   # Service account to be used by mongo pods
   # serviceAccountName: "mongo-service-account"
+  tolerations: []
+  affinity: {}
 
 # OpenShift specific configuration
 openshift:
